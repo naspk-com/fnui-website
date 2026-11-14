@@ -1,6 +1,7 @@
 import * as components from '@naspk/fnui/desktop'
 import 'tdesign-vue-next/dist/tdesign.css'
 import '@naspk/fnui-theme/desktop.css'
+import './theme-accents.css'
 import './preview.css'
 import { mountPreview } from './preview'
 

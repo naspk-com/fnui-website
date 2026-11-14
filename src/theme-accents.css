@@ -1,0 +1,7 @@
+/* These colors are a documentation-site preview, not published FnProvider presets. */
+.fnos-ui[data-fn-preset="naspk-blue"] {
+  --fn-primary: var(--site-accent, #0066ff);
+  --fn-primary-hover: var(--site-accent-hover, #0056d6);
+  --fn-primary-active: var(--site-accent-active, #0043b8);
+  --fn-primary-light: var(--site-accent-light, rgba(0, 102, 255, .12));
+}

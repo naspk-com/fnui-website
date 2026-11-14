@@ -16,7 +16,7 @@ const documented = computed(() => catalog.filter(item => examplesFor(item.slug).
 <template>
   <main class="tw:w-full tw:min-w-0 tw:px-[24px] tw:pt-[40px] tw:pb-[100px] tw:lg:px-[32px]">
     <nav aria-label="面包屑" class="tw:flex tw:items-center tw:gap-[8px] tw:text-[13px] tw:text-fn-text-muted">
-      <a href="#/" class="tw:hover:text-fn-text">首页</a>
+      <a href="/" class="tw:hover:text-fn-text">首页</a>
       <span aria-hidden="true">/</span>
       <span class="tw:text-fn-text-secondary">组件</span>
     </nav>
@@ -37,7 +37,7 @@ const documented = computed(() => catalog.filter(item => examplesFor(item.slug).
         <a
           v-for="item in group.items"
           :key="item.slug"
-          :href="`#/components/${item.slug}`"
+          :href="`/components/${item.slug}`"
           class="tw:group tw:flex tw:items-start tw:justify-between tw:gap-[16px] tw:rounded-[8px] tw:border tw:border-solid tw:border-fn-border tw:bg-fn-container tw:px-[16px] tw:py-[14px] tw:transition-colors tw:hover:border-fn-primary tw:hover:bg-fn-fill"
         >
           <span class="tw:min-w-0">

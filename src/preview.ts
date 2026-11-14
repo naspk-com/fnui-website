@@ -1,4 +1,5 @@
 import { createApp, defineAsyncComponent, defineComponent, h, onErrorCaptured, ref, type Component } from 'vue'
+import { applyAccent, resolveAccent } from './data/accents'
 
 const examples = import.meta.glob<{ default: Component }>('./examples/*.vue')
 
@@ -10,6 +11,7 @@ export function mountPreview(platform: 'desktop' | 'mobile', components: Record<
   const requestedPreset = params.get('preset')
   const preset = requestedPreset && ['naspk-blue', 'naspk-soft-blue', 'naspk-bright-blue'].includes(requestedPreset)
     ? requestedPreset : 'naspk-blue'
+  applyAccent(resolveAccent(params.get('accent')))
   const loader = name === 'file-manager'
     ? async () => {
         await import('../playground/src/preview.css')
@@ -17,7 +19,8 @@ export function mountPreview(platform: 'desktop' | 'mobile', components: Record<
       }
     : examples[`./examples/${name}.vue`]
   const Example = loader ? defineAsyncComponent(loader) : undefined
-  const fullBleed = name === 'file-manager' || name === 'layout-basic'
+  const desktopLayout = platform === 'desktop' && name.startsWith('layout-')
+  const fullBleed = name === 'file-manager' || name === 'layout-basic' || desktopLayout
   const pageFill = platform === 'mobile' && name.startsWith('tab-bar-')
 
   const Preview = defineComponent({
@@ -40,7 +43,7 @@ export function mountPreview(platform: 'desktop' | 'mobile', components: Record<
             color: 'var(--fn-text)',
           },
         }, error.value ? h('p', { role: 'alert' }, error.value)
-          : Example ? fullBleed ? h(Example) : h('div', { style: { width: '100%', maxWidth: wide || platform === 'mobile' ? '100%' : '720px' } }, [h(Example)])
+          : Example ? fullBleed ? h(Example, desktopLayout ? { style: { height: '100%' } } : {}) : h('div', { style: { width: '100%', maxWidth: wide || platform === 'mobile' ? '100%' : '720px' } }, [h(Example)])
           : h('p', { role: 'alert' }, '未找到此示例。')),
       })
     },

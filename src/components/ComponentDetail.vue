@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { FnButton, FnIcon, FnTag } from '@naspk/fnui/desktop'
+import { FnIcon, FnTag } from '@naspk/fnui/desktop'
 import { catalog, type ComponentEntry } from '../data/catalog'
 import { examplesFor } from '../data/examples'
 import { componentEvents, componentGuide, componentProps } from '../data/metadata'
@@ -10,6 +10,7 @@ const props = defineProps<{
   entry: ComponentEntry
   theme: 'light' | 'dark'
   preset: string
+  accent: string
 }>()
 const examples = computed(() => examplesFor(props.entry.slug))
 const apiProps = computed(() => componentProps(props.entry))
@@ -85,7 +86,7 @@ const previous = computed(() => (index.value > 0 ? catalog[index.value - 1] : un
 const next = computed(() => (index.value >= 0 && index.value < catalog.length - 1 ? catalog[index.value + 1] : undefined))
 async function copyLink() {
   try {
-    await navigator.clipboard.writeText(`${location.origin}${location.pathname}#/components/${props.entry.slug}`)
+    await navigator.clipboard.writeText(`${location.origin}${location.pathname}`)
     copied.value = true
     clearTimeout(timer)
     timer = setTimeout(() => { copied.value = false }, 2000)
@@ -101,9 +102,9 @@ function scrollToUsage() {
 <template>
   <main class="tw:w-full tw:min-w-0 tw:px-[24px] tw:pt-[32px] tw:pb-[96px] tw:lg:px-[32px]">
     <nav aria-label="面包屑" class="tw:flex tw:flex-wrap tw:items-center tw:gap-[8px] tw:text-[13px] tw:text-fn-text-muted">
-      <a href="#/" class="tw:hover:text-fn-text">首页</a>
+      <a href="/" class="tw:hover:text-fn-text">首页</a>
       <span aria-hidden="true">/</span>
-      <a href="#/components" class="tw:hover:text-fn-text">组件</a>
+      <a href="/components" class="tw:hover:text-fn-text">组件</a>
       <span aria-hidden="true">/</span>
       <span>{{ entry.group }}</span>
       <span aria-hidden="true">/</span>
@@ -118,9 +119,9 @@ function scrollToUsage() {
       </div>
       <p class="tw:mt-[12px] tw:mb-0 tw:max-w-[640px] tw:text-[15px] tw:leading-[1.8] tw:text-fn-text-secondary">{{ entry.description || `查看 ${entry.name} 的使用示例、属性和事件。` }}</p>
       <div class="tw:mt-[20px] tw:flex tw:flex-wrap tw:items-center tw:gap-[8px]">
-        <FnButton size="small" variant="outline" @click="scrollToUsage">查看示例</FnButton>
-        <FnButton size="small" variant="outline" @click="copyLink">{{ copied ? '链接已复制' : '复制链接' }}</FnButton>
-        <a :href="`#/components`" class="tw:inline-flex tw:items-center tw:gap-[4px] tw:px-[8px] tw:py-[6px] tw:text-[13px] tw:text-fn-text-muted tw:hover:text-fn-primary">组件总览 <FnIcon name="chevron-right" :size="14" /></a>
+        <button type="button" class="detail-action" @click="scrollToUsage">查看示例</button>
+        <button type="button" class="detail-action" @click="copyLink">{{ copied ? '链接已复制' : '复制链接' }}</button>
+        <a href="/components" class="tw:inline-flex tw:items-center tw:gap-[4px] tw:px-[8px] tw:py-[6px] tw:text-[13px] tw:text-fn-text-muted tw:hover:text-fn-primary">组件总览 <FnIcon name="chevron-right" :size="14" /></a>
       </div>
     </header>
 
@@ -131,12 +132,12 @@ function scrollToUsage() {
       </div>
       <p v-if="!examples.length" class="tw:mt-[14px] tw:rounded-[8px] tw:border tw:border-solid tw:border-fn-border tw:bg-fn-fill tw:px-[16px] tw:py-[14px] tw:text-[14px] tw:leading-[1.8] tw:text-fn-text-secondary">
         该组件的可运行示例尚未编写，可先查阅下方 API 和使用指南，或到
-        <a href="#/components" class="tw:text-fn-primary">组件总览</a> 浏览其他组件。
+        <a href="/components" class="tw:text-fn-primary">组件总览</a> 浏览其他组件。
       </p>
       <section v-for="example in examples" :id="`usage-${example.id}`" :key="example.id" class="tw:scroll-mt-[88px] tw:pt-[28px] tw:first-of-type:pt-[20px]">
         <h3 class="tw:mt-0 tw:mb-[6px] tw:text-[16px] tw:font-semibold">{{ example.title }}</h3>
         <p class="tw:mt-0 tw:mb-[16px] tw:text-[14px] tw:leading-[1.75] tw:text-fn-text-secondary">{{ example.description }}</p>
-        <ExamplePreview :name="example.id" :title="`${entry.title}：${example.title}`" :source="example.source" :mobile-only="entry.mobileOnly" :theme="theme" :preset="preset" />
+        <ExamplePreview :name="example.id" :title="`${entry.title}：${example.title}`" :source="example.source" :mobile-only="entry.mobileOnly" :theme="theme" :preset="preset" :accent="accent" />
       </section>
       <p v-if="examples.length" class="tw:mt-[18px] tw:text-[12px] tw:leading-[1.7] tw:text-fn-text-muted">源码中的组件导入会随预览平台切换；使用前请先配置对应平台的样式与 Provider。</p>
     </section>
@@ -201,11 +202,11 @@ function scrollToUsage() {
     </section>
 
     <nav v-if="previous || next" aria-label="上下页" class="tw:mt-[56px] tw:grid tw:gap-[12px] tw:border-t tw:border-solid tw:border-fn-border tw:pt-[24px] tw:sm:grid-cols-2">
-      <a v-if="previous" :href="`#/components/${previous.slug}`" class="tw:flex tw:flex-col tw:gap-[4px] tw:rounded-[8px] tw:border tw:border-solid tw:border-fn-border tw:px-[16px] tw:py-[12px] tw:hover:border-fn-primary">
+      <a v-if="previous" :href="`/components/${previous.slug}`" class="tw:flex tw:flex-col tw:gap-[4px] tw:rounded-[8px] tw:border tw:border-solid tw:border-fn-border tw:px-[16px] tw:py-[12px] tw:hover:border-fn-primary">
         <span class="tw:flex tw:items-center tw:gap-[4px] tw:text-[12px] tw:text-fn-text-muted"><FnIcon name="chevron-left" :size="13" /> 上一页</span>
         <span class="tw:text-[14px] tw:font-medium">{{ previous.title }} <span class="tw:text-[12px] tw:font-normal tw:text-fn-text-muted">{{ previous.name }}</span></span>
       </a>
-      <a v-if="next" :href="`#/components/${next.slug}`" :class="['tw:flex tw:flex-col tw:gap-[4px] tw:rounded-[8px] tw:border tw:border-solid tw:border-fn-border tw:px-[16px] tw:py-[12px] tw:hover:border-fn-primary', previous ? 'tw:items-end tw:text-right' : 'tw:col-start-2 tw:items-end tw:text-right']">
+      <a v-if="next" :href="`/components/${next.slug}`" :class="['tw:flex tw:flex-col tw:gap-[4px] tw:rounded-[8px] tw:border tw:border-solid tw:border-fn-border tw:px-[16px] tw:py-[12px] tw:hover:border-fn-primary', previous ? 'tw:items-end tw:text-right' : 'tw:col-start-2 tw:items-end tw:text-right']">
         <span class="tw:flex tw:items-center tw:gap-[4px] tw:text-[12px] tw:text-fn-text-muted">下一页 <FnIcon name="chevron-right" :size="13" /></span>
         <span class="tw:text-[14px] tw:font-medium">{{ next.title }} <span class="tw:text-[12px] tw:font-normal tw:text-fn-text-muted">{{ next.name }}</span></span>
       </a>
@@ -214,6 +215,18 @@ function scrollToUsage() {
 </template>
 
 <style scoped>
+.detail-action {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--fn-fill);
+  color: var(--fn-text-secondary);
+  font-size: 13px;
+}
+.detail-action:hover {
+  color: var(--fn-primary);
+}
 .fn-guide {
   color: var(--fn-text-secondary);
   font-size: 14px;

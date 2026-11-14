@@ -14,6 +14,7 @@ const props = defineProps<{
   menuOpen: boolean
   theme: 'light' | 'dark'
   preset: string
+  accent: string
 }>()
 const emit = defineEmits<{ closeMenu: [] }>()
 const entry = computed(() => catalog.find(item => props.path === `/components/${item.slug}`))
@@ -55,12 +56,12 @@ onBeforeUnmount(() => window.removeEventListener('scroll', syncActive))
     <DocsSidebar :path="path" :open="menuOpen" @close="emit('closeMenu')" />
     <GuidePage v-if="isGuide" />
     <ComponentsPage v-else-if="isIndex" />
-    <ComponentDetail v-else-if="entry" :key="entry.slug" :entry="entry" :theme="theme" :preset="preset" />
+    <ComponentDetail v-else-if="entry" :key="entry.slug" :entry="entry" :theme="theme" :preset="preset" :accent="accent" />
     <main v-else class="tw:px-[24px] tw:py-[96px] tw:text-center tw:text-fn-text-secondary">
       <FnIcon name="file-search" :size="40" />
       <h1 class="tw:text-[24px] tw:text-fn-text">没有找到这个页面</h1>
       <p class="tw:text-[14px]">从组件目录中选择一个页面继续浏览。</p>
-      <a href="#/components" class="tw:text-[14px] tw:text-fn-primary">浏览组件</a>
+      <a href="/components" class="tw:text-[14px] tw:text-fn-primary">浏览组件</a>
     </main>
     <aside v-if="outline.length" aria-label="本页内容" class="tw:sticky tw:top-[64px] tw:max-h-[calc(100vh-64px)] tw:hidden tw:overflow-y-auto tw:py-[48px] tw:pr-[16px] tw:min-[1200px]:block">
       <div class="tw:mb-[14px] tw:text-[12px] tw:font-semibold tw:text-fn-text">本页内容</div>
@@ -75,7 +76,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', syncActive))
         >{{ item.label }}</button>
       </nav>
       <div class="tw:mt-[24px] tw:border-t tw:border-solid tw:border-fn-border tw:pt-[16px]">
-        <a href="#/components" class="tw:flex tw:items-center tw:gap-[6px] tw:text-[12px] tw:text-fn-text-muted tw:hover:text-fn-primary"><FnIcon name="view-list" :size="14" /> 全部组件</a>
+        <a href="/components" class="tw:flex tw:items-center tw:gap-[6px] tw:text-[12px] tw:text-fn-text-muted tw:hover:text-fn-primary"><FnIcon name="view-list" :size="14" /> 全部组件</a>
       </div>
     </aside>
   </div>

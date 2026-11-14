@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
-import { FnButton, FnIcon } from '@naspk/fnui/desktop'
+import { FnIcon } from '@naspk/fnui/desktop'
+import { FnSegmented } from '@naspk/fnui/mobile'
 
 const props = defineProps<{
   name: string
@@ -8,6 +9,7 @@ const props = defineProps<{
   source: string
   theme: 'light' | 'dark'
   preset: string
+  accent: string
   mobileOnly?: boolean
   template?: boolean
 }>()
@@ -19,9 +21,19 @@ const copyError = ref(false)
 const revision = ref(0)
 let timer: ReturnType<typeof setTimeout> | undefined
 
+const platformItems = computed(() => [
+  { value: 'desktop', label: '桌面', disabled: props.mobileOnly },
+  { value: 'mobile', label: '移动' },
+])
+const widthItems = [
+  { value: 'fluid', label: '自适应' },
+  { value: 'tablet', label: '768' },
+  { value: 'phone', label: '375' },
+]
+const desktopLayout = computed(() => platform.value === 'desktop' && props.name.startsWith('layout-'))
 const wideExamples = new Set(['table-basic', 'table-sort', 'table-pagination', 'table-expand', 'table-empty', 'form-basic', 'form-async', 'form-reset', 'form-item-basic', 'form-item-validator', 'descriptions-title', 'descriptions-custom', 'timeline-basic', 'timeline-custom', 'data-view-basic', 'data-view-list', 'data-view-grid', 'transfer-basic', 'transfer-sortable', 'transfer-disabled', 'file-browser-basic', 'file-browser-grid', 'file-browser-loading', 'layout-basic', 'layout-plain', 'layout-sidebar', 'page-basic', 'page-scroll-content', 'page-padding-none', 'anchor-basic', 'anchor-multi', 'navigation-basic', 'navigation-bottom', 'guide-basic', 'guide-custom', 'indexes-basic', 'indexes-track', 'breadcrumb-max', 'pagination-size', 'tree-draggable', 'swipe-cell-group-basic', 'swipe-cell-group-multi', 'swipe-cell-group-disabled', 'navigation-many', 'anchor-wrap', 'timeline-status', 'form-item-no-label'])
 const frameUrl = computed(() => {
-  const query = new URLSearchParams({ demo: props.name, theme: props.theme, preset: props.preset, revision: String(revision.value) })
+  const query = new URLSearchParams({ demo: props.name, theme: props.theme, preset: props.preset, accent: props.accent, revision: String(revision.value) })
   if (wideExamples.has(props.name)) query.set('wide', '1')
   return `${import.meta.env.BASE_URL}preview-${platform.value}.html?${query}`
 })
@@ -97,6 +109,12 @@ function selectPlatform(value: 'desktop' | 'mobile') {
   platform.value = value
   width.value = value === 'mobile' ? 'phone' : 'fluid'
 }
+function updatePlatform(value: string | number | null) {
+  if (value === 'desktop' || value === 'mobile') selectPlatform(value)
+}
+function updateWidth(value: string | number | null) {
+  if (value === 'fluid' || value === 'tablet' || value === 'phone') width.value = value
+}
 async function copy() {
   try {
     await navigator.clipboard.writeText(displayedSource.value)
@@ -121,27 +139,30 @@ onBeforeUnmount(() => clearTimeout(timer))
 
 <template>
   <div class="tw:overflow-hidden tw:rounded-[10px] tw:border tw:border-solid tw:border-fn-border">
-    <div class="tw:flex tw:flex-wrap tw:items-center tw:gap-[6px] tw:border-b tw:border-solid tw:border-fn-border tw:bg-fn-fill tw:px-[10px] tw:py-[8px]">
-      <div role="group" aria-label="预览平台" class="tw:flex tw:items-center tw:gap-[2px]">
-        <FnButton size="small" :variant="platform === 'desktop' ? 'filled' : 'text'" :disabled="mobileOnly" :aria-pressed="platform === 'desktop'" @click="selectPlatform('desktop')">桌面</FnButton>
-        <FnButton size="small" :variant="platform === 'mobile' ? 'filled' : 'text'" :aria-pressed="platform === 'mobile'" @click="selectPlatform('mobile')">移动</FnButton>
-      </div>
-      <div role="group" aria-label="预览宽度" class="tw:flex tw:items-center tw:gap-[2px]">
-        <FnButton size="small" :variant="width === 'fluid' ? 'filled' : 'text'" :aria-pressed="width === 'fluid'" @click="width = 'fluid'">自适应</FnButton>
-        <FnButton size="small" :variant="width === 'tablet' ? 'filled' : 'text'" :aria-pressed="width === 'tablet'" @click="width = 'tablet'">768</FnButton>
-        <FnButton size="small" :variant="width === 'phone' ? 'filled' : 'text'" :aria-pressed="width === 'phone'" @click="width = 'phone'">375</FnButton>
-      </div>
-      <div class="tw:ml-auto tw:flex tw:items-center">
-        <FnButton size="small" variant="text" aria-label="重置示例" @click="revision++"><FnIcon name="refresh" :size="16" /></FnButton>
-        <FnButton size="small" variant="text" :aria-expanded="showCode" @click="showCode = !showCode"><FnIcon name="code" :size="16" /> {{ showCode ? '收起代码' : '查看代码' }}</FnButton>
+    <div class="preview-toolbar">
+      <FnSegmented class="preview-segment" label="预览平台" :model-value="platform" :items="platformItems" @update:model-value="updatePlatform" />
+      <FnSegmented class="preview-segment" label="预览宽度" :model-value="width" :items="widthItems" @update:model-value="updateWidth" />
+      <div class="preview-actions">
+        <button type="button" class="preview-action" aria-label="重置示例" title="重置示例" @click="revision++"><FnIcon name="refresh" :size="16" /></button>
+        <button type="button" class="preview-action" :aria-expanded="showCode" @click="showCode = !showCode"><FnIcon name="code" :size="16" /><span>{{ showCode ? '收起代码' : '查看代码' }}</span></button>
       </div>
     </div>
-    <div v-if="width === 'fluid'" :class="['tw:flex tw:w-full tw:justify-center tw:bg-fn-fill', platform === 'desktop' ? 'fn-preview-canvas' : 'tw:overflow-auto']">
+    <div v-if="desktopLayout" class="layout-preview">
       <iframe
         :key="frameUrl"
         :src="frameUrl"
         loading="lazy"
-        :style="platform === 'desktop' ? { width: '100%', height: '100%' } : { width: frameWidth, height: frameHeight }"
+        :style="{ width: frameWidth }"
+        class="layout-preview__frame"
+        :title="`${title} 桌面端预览`"
+      />
+    </div>
+    <div v-else-if="width === 'fluid'" class="tw:flex tw:w-full tw:justify-center tw:overflow-auto tw:bg-fn-fill">
+      <iframe
+        :key="frameUrl"
+        :src="frameUrl"
+        loading="lazy"
+        :style="{ width: frameWidth, height: frameHeight }"
         class="tw:block tw:w-full tw:border-0 tw:bg-fn-container"
         :title="`${title} ${platform === 'desktop' ? '桌面端' : '移动端'}预览`"
       />
@@ -158,7 +179,7 @@ onBeforeUnmount(() => clearTimeout(timer))
     <div v-if="showCode" class="tw:border-t tw:border-solid tw:border-fn-border tw:bg-fn-fill">
       <div class="tw:flex tw:items-center tw:justify-between tw:gap-[12px] tw:border-b tw:border-solid tw:border-fn-border tw:px-[16px] tw:py-[8px] tw:text-[12px] tw:text-fn-text-muted">
         <span>{{ template ? 'FileManager.vue' : `${name}.vue` }}</span>
-        <FnButton size="small" variant="text" @click="copy">{{ copied ? '已复制' : '复制代码' }}</FnButton>
+        <button type="button" class="preview-action" @click="copy">{{ copied ? '已复制' : '复制代码' }}</button>
       </div>
       <p v-if="copyError" role="status" class="tw:px-[16px] tw:text-[12px] tw:text-fn-danger">无法访问剪贴板，请手动选择代码。</p>
       <pre class="tw:m-0 tw:overflow-auto tw:p-[20px] tw:text-[12px] tw:leading-[1.8] tw:text-fn-text-secondary"><code>{{ displayedSource }}</code></pre>
@@ -167,6 +188,75 @@ onBeforeUnmount(() => clearTimeout(timer))
 </template>
 
 <style scoped>
+.preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--fn-border);
+  background: var(--fn-container);
+}
+.preview-segment {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--fn-fill);
+}
+.preview-segment :deep(button) {
+  min-height: 28px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fn-text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.preview-segment :deep(button[aria-pressed="true"]) {
+  background: var(--fn-container);
+  color: var(--fn-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+.preview-segment :deep(button:disabled) { opacity: .4; }
+.preview-segment :deep(button:not(:disabled):hover),
+.preview-action:hover { color: var(--fn-primary); }
+.preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+.preview-action {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fn-text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.preview-action:hover { background: var(--fn-fill); }
+.layout-preview {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+.layout-preview__frame {
+  display: block;
+  flex: none;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border: 0;
+  padding: 0;
+  background: var(--fn-container);
+}
 .fn-preview-stage {
   display: flex;
   width: 100%;
@@ -176,10 +266,6 @@ onBeforeUnmount(() => clearTimeout(timer))
   background-color: var(--fn-fill);
   background-image: radial-gradient(color-mix(in oklab, var(--fn-text-muted) 18%, transparent) 1px, transparent 1px);
   background-size: 18px 18px;
-}
-.fn-preview-canvas {
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
 }
 .fn-preview-device {
   position: relative;

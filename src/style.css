@@ -36,3 +36,27 @@
     *, *::before, *::after { transition-duration: .01ms !important; }
   }
 }
+
+/* 覆盖 TDesign 的按钮边框：实心/浅色/文字按钮无边框，描边按钮使用浅灰边框 */
+/* 移动端组件的样式会生成半像素边框，不能套用到文档站的桌面按钮。 */
+.fnos-ui .site-shell .t-button.fn-button::after {
+  content: none;
+}
+.fnos-ui .t-button.fn-button--filled,
+.fnos-ui .t-button.fn-button--light,
+.fnos-ui .t-button.fn-button--text {
+  border-color: transparent;
+}
+.fnos-ui .t-button.fn-button--default.fn-button--outline,
+.fnos-ui .t-button.fn-button--default.fn-button--dashed {
+  border-width: 1px;
+  border-color: var(--fn-border);
+}
+
+/* 焦点态统一使用主题色，避免浏览器默认黑色焦点环 */
+.fnos-ui .t-button:focus-visible,
+.fnos-ui a:focus-visible,
+.fnos-ui button:focus-visible {
+  outline: 2px solid var(--fn-primary);
+  outline-offset: 3px;
+}

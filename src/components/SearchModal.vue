@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { FnIcon } from '@naspk/fnui/desktop'
 import { catalog, groupNames } from '../data/catalog'
+import { navigate } from '../router'
 
 const props = defineProps<{ open: boolean }>()
 const emit = defineEmits<{ 'update:open': [boolean] }>()
@@ -22,7 +23,7 @@ function close() {
   emit('update:open', false)
 }
 function select(slug: string) {
-  location.hash = `/components/${slug}`
+  navigate(`/components/${slug}`)
   close()
 }
 function indexOf(slug: string) {

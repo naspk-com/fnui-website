@@ -14,7 +14,7 @@ import launchpadIcon from '../../fnos-reference-icons/launchpad.png'
 import darkWallpaper from '../wallpaper-4-dark.webp'
 import lightWallpaper from '../wallpaper-4-light.webp'
 
-const props = defineProps<{ theme: 'light' | 'dark'; preset: string }>()
+const props = defineProps<{ theme: 'light' | 'dark'; preset: string; accent: string }>()
 const windowOpen = ref(false)
 const windowStarted = ref(false)
 const maximized = ref(false)
@@ -37,7 +37,7 @@ const apps = [
   { name: '资源管理', icon: resourcesIcon, available: false },
 ]
 const frameUrl = computed(() => {
-  const query = new URLSearchParams({ demo: 'file-manager', theme: props.theme, preset: props.preset })
+  const query = new URLSearchParams({ demo: 'file-manager', theme: props.theme, preset: props.preset, accent: props.accent })
   return `${import.meta.env.BASE_URL}preview-desktop.html?${query}`
 })
 const windowStyle = computed(() => {
@@ -194,7 +194,7 @@ function closeWindow() {
       <div class="tw:absolute tw:top-[16px] tw:right-[16px] tw:z-10 tw:flex tw:items-center tw:gap-[8px] tw:rounded-[6px] tw:bg-black/50 tw:px-[10px] tw:py-[6px] tw:text-[12px] tw:text-white/80">
         <span>模拟环境 · 不连接 NAS</span>
         <button type="button" :aria-expanded="showCode" aria-label="查看模板源码" title="查看模板源码" class="tw:grid tw:h-[24px] tw:w-[24px] tw:place-items-center tw:border-0 tw:bg-transparent tw:text-white/80 tw:hover:text-white" @click="showCode = !showCode"><FnIcon name="code" :size="17" /></button>
-        <a href="#/" aria-label="返回文档" title="返回文档" class="tw:grid tw:h-[24px] tw:w-[24px] tw:place-items-center tw:text-white/80 tw:hover:text-white"><FnIcon name="logout" :size="17" /></a>
+        <a href="/" aria-label="返回文档" title="返回文档" class="tw:grid tw:h-[24px] tw:w-[24px] tw:place-items-center tw:text-white/80 tw:hover:text-white"><FnIcon name="logout" :size="17" /></a>
       </div>
       </section>
 

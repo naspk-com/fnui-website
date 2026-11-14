@@ -16,7 +16,8 @@ export default defineConfig({
   preview: { host: '127.0.0.1', port: 4173, strictPort: true },
   build: {
     outDir: fileURLToPath(new URL('./dist', import.meta.url)),
-    emptyOutDir: false,
+    emptyOutDir: true,
+    cssCodeSplit: false,
     rollupOptions: {
       input: {
         index: fileURLToPath(new URL('./index.html', import.meta.url)),
