@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/*
+ * fnOS Web UI 样式表入口
+ * 由原始压缩版 style.css 拆分整理，内容未做任何删改，仅按层归档。
+ *
+ * 层序（自上而下 = 原始书写顺序，层间顺序不可调换）：
+ *   00 设计变量    css/00-tokens.css
+ *   01 组件        css/01-components/*.css        共 53 个组件文件
+ *   02 原子类      css/02-utilities.css
+ *   03 fnOS 组件   css/03-fnos-ui.css
+ *   04 基础重置    css/04-base.css
+ *   05 覆写补丁    css/05-overrides.css
+ *   06 biz 外壳    css/06-biz-shell.css（登录页 / 全局加载 / 兼容提示，来自 biz 分包）
+ *
+ * 原始压缩备份：style.min.css
+ */
+
+@import url("./css/00-tokens.css");
+@import url("./css/01-components/scrollbar.css");
+@import url("./css/01-components/typography.css");
+@import url("./css/01-components/tooltip.css");
+@import url("./css/01-components/portal.css");
+@import url("./css/01-components/icon.css");
+@import url("./css/01-components/popover.css");
+@import url("./css/01-components/spin.css");
+@import url("./css/01-components/input.css");
+@import url("./css/01-components/highlight.css");
+@import url("./css/01-components/autocomplete.css");
+@import url("./css/01-components/avatar.css");
+@import url("./css/01-components/button.css");
+@import url("./css/01-components/badge.css");
+@import url("./css/01-components/banner.css");
+@import url("./css/01-components/card.css");
+@import url("./css/01-components/skeleton.css");
+@import url("./css/01-components/space.css");
+@import url("./css/01-components/carousel.css");
+@import url("./css/01-components/cascader.css");
+@import url("./css/01-components/checkbox.css");
+@import url("./css/01-components/tag.css");
+@import url("./css/01-components/collapsible.css");
+@import url("./css/01-components/collapse.css");
+@import url("./css/01-components/scrolllist.css");
+@import url("./css/01-components/datepicker.css");
+@import url("./css/01-components/divider.css");
+@import url("./css/01-components/empty.css");
+@import url("./css/01-components/modal.css");
+@import url("./css/01-components/dropdown.css");
+@import url("./css/01-components/row.css");
+@import url("./css/01-components/col.css");
+@import url("./css/01-components/notification.css");
+@import url("./css/01-components/overflow.css");
+@import url("./css/01-components/page.css");
+@import url("./css/01-components/select.css");
+@import url("./css/01-components/popconfirm.css");
+@import url("./css/01-components/progress.css");
+@import url("./css/01-components/radio.css");
+@import url("./css/01-components/rating.css");
+@import url("./css/01-components/sidesheet.css");
+@import url("./css/01-components/slider.css");
+@import url("./css/01-components/steps.css");
+@import url("./css/01-components/switch.css");
+@import url("./css/01-components/form.css");
+@import url("./css/01-components/table.css");
+@import url("./css/01-components/tabs.css");
+@import url("./css/01-components/timepicker.css");
+@import url("./css/01-components/toast.css");
+@import url("./css/01-components/tree.css");
+@import url("./css/01-components/upload.css");
+@import url("./css/01-components/image.css");
+@import url("./css/01-components/color.css");
+@import url("./css/01-components/pincode.css");
+@import url("./css/02-utilities.css");
+@import url("./css/03-fnos-ui.css");
+@import url("./css/04-base.css");
+@import url("./css/05-overrides.css");
+@import url("./css/06-biz-shell.css");

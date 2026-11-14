@@ -1,0 +1,15 @@
+/* portal 组件样式（2 条规则，原文件第 125-126 条） */
+
+.semi-portal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.semi-portal-inner {
+  position: absolute;
+  background-color: transparent;
+  min-width: max-content;
+}

@@ -1,0 +1,517 @@
+/* 覆写层：fnOS 对 Semi 组件的局部补丁与暗色主题适配（共 105 条规则）
+ * 来源：原 style.css 第 5892-5996 条 */
+
+.semi-button.semi-button-primary.semi-button-light {
+  background-color: var(--semi-color-primary-light-default);
+}
+
+.semi-button.semi-button-primary.semi-button-light:not(.semi-button-disabled):hover {
+  background-color: var(--semi-color-primary-light-hover);
+}
+
+.semi-button.semi-button-primary.semi-button-light:not(.semi-button-disabled):active {
+  background-color: var(--semi-color-primary-light-active);
+}
+
+.semi-button.semi-button-warning.semi-button-light {
+  background-color: var(--semi-color-warning-light-custom-button-bg-default);
+}
+
+.semi-button.semi-button-warning.semi-button-light:not(.semi-button-disabled):hover {
+  background-color: var(--semi-color-warning-light-custom-button-bg-hover);
+}
+
+.semi-button.semi-button-warning.semi-button-light:not(.semi-button-disabled):active {
+  background-color: var(--semi-color-warning-light-custom-button-bg-active);
+}
+
+.semi-button.semi-button-danger.semi-button-light {
+  background-color: var(--semi-color-danger-light-custom-button-bg-default);
+}
+
+.semi-button.semi-button-danger.semi-button-light:not(.semi-button-disabled):hover {
+  background-color: var(--semi-color-danger-light-custom-button-bg-hover);
+}
+
+.semi-button.semi-button-danger.semi-button-light:not(.semi-button-disabled):active {
+  background-color: var(--semi-color-danger-light-custom-button-bg-active);
+}
+
+.semi-button {
+  border-radius: var(--semi-border-radius-custom-button-default);
+}
+
+.semi-button.semi-button-size-small {
+  border-radius: var(--semi-border-radius-custom-button-small);
+}
+
+.semi-button.semi-button-size-large {
+  border-radius: var(--semi-border-radius-custom-button-large);
+  height: 54px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.semi-button.semi-button-size-large.semi-button-with-icon-only {
+  padding: 17px;
+}
+
+.semi-button.semi-button-size-large.semi-button-with-icon-only .semi-icon-default {
+  font-size: 20px;
+}
+
+.semi-button-split .semi-button.semi-button-first.semi-button-size-small {
+  border-radius: var(--semi-border-radius-custom-button-small) 0 0 var(--semi-border-radius-custom-button-small);
+}
+
+.semi-button-split .semi-button.semi-button-first.semi-button-size-large {
+  border-radius: var(--semi-border-radius-custom-button-large) 0 0 var(--semi-border-radius-custom-button-large);
+}
+
+.semi-button-split .semi-button.semi-button-last.semi-button-size-small {
+  border-radius: 0 var(--semi-border-radius-custom-button-small) var(--semi-border-radius-custom-button-small) 0;
+}
+
+.semi-button-split .semi-button.semi-button-last.semi-button-size-large {
+  border-radius: 0 var(--semi-border-radius-custom-button-large) var(--semi-border-radius-custom-button-large) 0;
+}
+
+.semi-item-disable-hover:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+  cursor: default;
+  pointer-events: none;
+}
+
+.semi-button.semi-button-with-group-active {
+  background-color: var(--semi-color-fill-0);
+}
+
+.semi-card.semi-card-bordered {
+  background-color: inherit;
+  border-color: var(--semi-color-card-border);
+  border-radius: 8px;
+}
+
+.semi-card.semi-card-with-background {
+  background-color: var(--semi-color-card-DefaultBg);
+  border: 1px solid var(--semi-color-card-border);
+  border-radius: 8px;
+}
+
+.semi-checkboxGroup .semi-checkbox-disabled .semi-checkbox-inner-checked .semi-checkbox-inner-display {
+  color: var(--semi-color-text-3) !important;
+  background: var(--semi-color-primary-disabled) !important;
+  box-shadow: inset 0 0 0 1px var(--semi-color-primary-disabled) !important;
+}
+
+.semi-checkboxGroup .semi-checkbox-cardType {
+  border-color: var(--semi-color-border);
+  border-radius: 8px;
+}
+
+.semi-checkboxGroup .semi-checkbox-cardType_checked {
+  border: 1px solid var(--semi-color-primary);
+}
+
+.semi-checkbox-disabled .semi-checkbox-inner-checked .semi-checkbox-inner-display {
+  color: var(--semi-color-text-3) !important;
+  background: var(--semi-color-primary-disabled) !important;
+  box-shadow: inset 0 0 0 1px var(--semi-color-primary-disabled) !important;
+}
+
+.semi-checkbox:not(.semi-checkbox-disabled) .semi-checkbox-inner-display .semi-icon {
+  color: var(--semi-color-white);
+}
+
+.semi-progress .semi-progress-track {
+  overflow: hidden;
+}
+
+.os-scrollbar::-webkit-scrollbar,
+.semi-table-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.os-scrollbar::-webkit-scrollbar-track,
+.semi-table-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.os-scrollbar::-webkit-scrollbar-thumb,
+.semi-table-body::-webkit-scrollbar-thumb {
+  background: var(--semi-color-Scrollbar);
+  border-radius: 4px;
+}
+
+.os-scrollbar::-webkit-scrollbar-thumb:hover,
+.semi-table-body::-webkit-scrollbar-thumb:hover {
+  background: var(--semi-color-Scrollbar-hover);
+}
+
+.os-scrollbar::-webkit-scrollbar-corner,
+.semi-table-body::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.os-scrollbar-black-transparent-bg {
+  --ms-thumb-color: var(--semi-color-white-20) !important;
+  --ms-thumb-hover-color: var(--semi-color-Scrollbar-hover) !important;
+}
+
+.os-scrollbar-black-transparent-bg .ms-thumb {
+  background: var(--semi-color-white-20) !important;
+}
+
+.scrollbar-none,
+.os-scrollbar-hidden,
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -webkit-scrollbar-display: none;
+}
+
+.os-scrollbar-hidden::-webkit-scrollbar,
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.os-scrollbar-hidden::-webkit-scrollbar-thumb,
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.os-scrollbar-hidden::-webkit-scrollbar-track,
+.scrollbar-hidden::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.os-page-content {
+  height: calc(100vh - env(safe-area-inset-bottom));
+  width: 100%;
+}
+
+.semi-table-container {
+  border-top: 1px solid var(--semi-color-divider-1);
+}
+
+.semi-table-body .semi-table {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+.semi-table-scroll-position-left.semi-table-scroll-position-right .semi-table-body,
+.semi-table-fixed-header .semi-table-body {
+  border-top: 0 !important;
+}
+
+.semi-custom-table-no-hover .semi-table-tbody > .semi-table-row:hover .semi-table-row-cell {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.semi-custom-table-no-hover-image .semi-table-tbody > .semi-table-row:hover > .semi-table-row-cell {
+  background-image: none !important;
+}
+
+.semi-custom-table-no-hover-image
+  .semi-table-tbody
+  > .semi-table-row:hover
+  > .semi-table-row-cell.semi-table-cell-fixed-left,
+.semi-custom-table-no-hover-image
+  .semi-table-tbody
+  > .semi-table-row:hover
+  > .semi-table-row-cell.semi-table-cell-fixed-right {
+  background-image: none !important;
+}
+
+.semi-table .semi-table-column-sorter-up .semi-icon,
+.semi-table .semi-table-column-sorter-down .semi-icon {
+  color: var(--semi-color-text-3) !important;
+}
+
+.semi-table .semi-table-column-sorter-up.on .semi-icon-caretup,
+.semi-table .semi-table-column-sorter-up.on .semi-icon-caretdown,
+.semi-table .semi-table-column-sorter-down.on .semi-icon-caretup,
+.semi-table .semi-table-column-sorter-down.on .semi-icon-caretdown {
+  color: var(--semi-color-text-2) !important;
+}
+
+.trim-os__semi-table--with-row-head-border .semi-table-header:not(.semi-table-column-selection):not(:last-child):after {
+  content: "";
+  position: absolute;
+  right: -0.5px;
+  top: 50%;
+  margin-top: -10px;
+  width: 1px;
+  height: 20px;
+  background-color: var(--semi-color-divider-1);
+}
+
+.semi-table-placeholder {
+  border-bottom: 0 !important;
+}
+
+.semi-tag {
+  padding: 2px 4px !important;
+}
+
+.semi-tag .semi-tag-content,
+.semi-tag.semi-tag-default {
+  font-weight: 500;
+}
+
+.semi-tag.semi-tag-green-light {
+  background-color: var(--semi-color-success-light-default);
+  color: var(--semi-color-success);
+}
+
+.semi-tag.semi-tag-orange-light {
+  background-color: var(--semi-color-warning-light-default);
+  color: var(--semi-color-warning);
+}
+
+.semi-tag.semi-tag-blue-light {
+  background-color: var(--semi-color-primary-light-default);
+  color: var(--semi-color-primary);
+}
+
+.semi-tag.semi-tag-red-light {
+  background-color: var(--semi-color-danger-light-default);
+  color: var(--semi-color-danger);
+}
+
+.semi-tag.semi-tag-grey-light {
+  background-color: var(--semi-color-fill-0);
+  color: var(--semi-color-text-1);
+}
+
+.semi-modal-footer .semi-button {
+  min-width: 88px;
+}
+
+.semi-modal .semi-modal-withIcon {
+  margin-left: 0;
+}
+
+.semi-modal .semi-modal-header {
+  align-items: center;
+}
+
+.semi-modal .semi-modal-icon-wrapper {
+  margin-right: 8px;
+}
+
+.semi-modal .semi-icon-extra-large {
+  font-size: 20px;
+}
+
+.semi-modal-confirm .semi-modal .semi-modal-header {
+  margin-bottom: 24px;
+}
+
+.semi-select-option-list-wrapper .semi-select-option-list::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.semi-select-option-list-wrapper .semi-select-option-list::-webkit-scrollbar-track {
+  background: #0000;
+}
+
+.semi-select-option-list-wrapper .semi-select-option-list::-webkit-scrollbar-thumb {
+  background: var(--semi-color-fill-2);
+  border-radius: 4px;
+}
+
+.semi-select-option-list-wrapper .semi-select-option-list::-webkit-scrollbar-thumb:hover {
+  background: var(--semi-color-fill-1);
+}
+
+.semi-select-disabled:focus,
+.semi-select-disabled:active,
+.semi-select-disabled:hover {
+  border: 1px solid var(--semi-color-border) !important;
+  background-color: var(--semi-color-disabled-bg) !important;
+}
+
+.semi-select.semi-select-large .semi-select-selection {
+  font-size: 14px;
+}
+
+body .semi-popover {
+  border-radius: var(--semi-border-radius-medium);
+  outline-width: 1px;
+  outline-color: var(--semi-color-border-modal);
+  outline-offset: -1px;
+  outline-style: solid;
+}
+
+.semi-dropdown-wrapper {
+  border-radius: var(--semi-border-radius-medium) !important;
+  box-shadow: var(--semi-shadow-dropdown) !important;
+}
+
+body .semi-dropdown {
+  border-radius: var(--semi-border-radius-medium);
+  outline-width: 1px;
+  outline-color: var(--semi-color-border-select);
+  outline-offset: -1px;
+  outline-style: solid;
+}
+
+.semi-dropdown-item-withTick.semi-dropdown-item-active {
+  font-weight: 400;
+}
+
+.semi-dropdown-item-without-padding .semi-dropdown-item {
+  padding: 0;
+}
+
+.semi-form .no-padding.semi-form-field {
+  padding: 0 !important;
+}
+
+body .semi-notification-list[placement="topRight"] {
+  right: 0;
+  top: 44px;
+}
+
+body .semi-popconfirm-popover,
+body .semi-popconfirm-popover .semi-popover {
+  border-radius: 12px;
+}
+
+.semi-tabs .semi-tabs-bar-line.semi-tabs-bar-top .semi-tabs-tab:nth-of-type(1) {
+  padding-left: 4px;
+}
+
+.semi-tabs .semi-tabs-pane:focus-visible {
+  outline: none;
+}
+
+body .semi-divider {
+  border-bottom-color: var(--semi-color-divider-1);
+}
+
+body .semi-divider-vertical {
+  border-left-color: var(--semi-color-divider-1);
+}
+
+.semi-input-wrapper-disabled:hover {
+  background-color: var(--semi-color-disabled-bg) !important;
+}
+
+.semi-input-wrapper-disabled:hover.semi-input-wrapper {
+  border-color: var(--semi-color-border) !important;
+}
+
+.modal-footer .semi-button {
+  min-width: 88px;
+}
+
+.form-shrink-suffix .semi-input-suffix {
+  flex-shrink: 0;
+}
+
+.semi-timepicker-panel .semi-scrolllist {
+  border-radius: var(--semi-border-radius-medium);
+  outline-width: 1px;
+  outline-color: var(--semi-color-border-modal);
+  outline-offset: -1px;
+  outline-style: solid;
+}
+
+.semi-timepicker-panel .semi-scrolllist-body {
+  padding: 0 1px;
+}
+
+body .semi-typography a:visited {
+  color: var(--semi-color-link);
+}
+
+#root .semi-modal-mask {
+  background-color: var(--semi-color-overlay-CustomAnti);
+}
+
+#root .semi-image-preview {
+  background-color: var(--semi-color-overlay-CustomPreview);
+}
+
+body[theme-mode="dark"] #root .semi-image-preview {
+  background-color: var(--semi-color-overlay-bg);
+}
+
+#root .semi-tooltip-wrapper {
+  max-width: unset;
+}
+
+#root .semi-page-item-disabled {
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+}
+
+#root .semi-button:focus-visible {
+  outline: none !important;
+}
+
+.trim-ui__app-layout--window.trim-ui__app-layout--window {
+  width: var(--app-window-default-width, 1100px);
+  height: var(--app-window-default-height, 640px);
+}
+
+.trim-ui__app-layout--window {
+  box-shadow:
+    0 0 #0000,
+    0 0 #0000,
+    var(--semi-shadow-app);
+  outline-color: var(--semi-color-border-modal);
+  outline-style: solid;
+  outline-offset: 0px;
+  outline-width: 1px;
+}
+
+.trim-ui__app-layout--window.is-dragging,
+.trim-ui__app-layout--window.is-resizing {
+  will-change: top, left, width, height;
+}
+
+.trim-os__beginner-guide--root {
+  background-image: url(/assets/beginner-guide-bg-light-B8VSy0RH.png) !important;
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.trim-os__beginner-guide--root .trim-ui__app-layout--header-title {
+  padding-right: 1rem !important;
+}
+
+.trim-os__beginner-guide--root .semi-select-arrow {
+  width: 16px !important;
+  margin-left: 2px !important;
+  margin-right: 6px !important;
+}
+
+body[theme-mode="dark"] .trim-os__beginner-guide--root {
+  background-image: url(/assets/beginner-guide-bg-dark-Db0abcZ8.png) !important;
+}
+
+.semi-dropdown-custom .semi-dropdown-item:hover {
+  background-color: var(--semi-color-fill-0);
+}
+
+.app-auth-pick-file-dialog .semi-modal-mask {
+  display: none !important;
+}
+
+.app-auth-pick-file-dialog .semi-modal-wrap {
+  top: 63px !important;
+}
+
+.app-auth-pick-file-dialog .semi-modal-body {
+  overflow: hidden;
+}

@@ -1,0 +1,85 @@
+/* biz 外壳层：登录页 / 全局加载 / 浏览器不兼容提示
+ * 来源：fnOS biz 分包（不在 style.min.css 中），按原顺序归档，供页面外壳类组合使用
+ * 用法：<html class="body--biz"> 即切换到 token 底色（渐变仅作兜底），深色再叠加 body--biz-dark */
+
+body,
+html {
+  background: linear-gradient(110deg, #4a5568 0.26%, #3a424f 97.78%);
+}
+
+html.body--biz {
+  --biz-bg-fallback: #f2f3f4;
+}
+
+html.body--biz.body--biz-dark {
+  --biz-bg-fallback: #1a1e23;
+}
+
+html.body--biz,
+html.body--biz body {
+  background: var(--semi-color-bg-0, var(--biz-bg-fallback));
+}
+
+html.body--biz body[theme-mode="dark"] {
+  background: var(--semi-color-bg-0, #1a1e23);
+}
+
+.global-loading--biz {
+  --biz-loading-fallback: #f2f3f4;
+  background: var(--semi-color-bg-0, var(--biz-loading-fallback));
+}
+
+body[theme-mode="dark"] .global-loading--biz {
+  --biz-loading-fallback: #1a1e23;
+  background: var(--semi-color-bg-0, var(--biz-loading-fallback));
+}
+
+.incompatible-box {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.incompatible-box h1 {
+  margin: 0 0 20px;
+  font-size: 32px;
+  line-height: 44px;
+  font-weight: 600;
+  color: #202327;
+}
+
+.incompatible-box .item1 {
+  margin-right: 60px;
+}
+
+.incompatible-box .logo {
+  position: absolute;
+  display: flex;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.incompatible-box .logo div {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 600;
+  color: #202327;
+  margin-left: 8px;
+}
+
+.incompatible-box p {
+  margin: 0 0 60px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #4a5568;
+}
+
+.incompatible-box span {
+  display: inline-block;
+  margin-top: 14px;
+}

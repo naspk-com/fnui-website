@@ -1,0 +1,7 @@
+/* highlight 组件样式（1 条规则，原文件第 311-311 条） */
+
+.semi-highlight-tag {
+  color: var(--semi-color-highlight);
+  background-color: var(--semi-color-highlight-bg);
+  font-weight: 600;
+}

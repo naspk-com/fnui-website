@@ -1,0 +1,34 @@
+{
+  "name": "@naspk/fnui-website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "fnUI 文档站、示例与模板预览。",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@naspk/fnui": "0.1.0",
+    "@naspk/fnui-theme": "0.1.0",
+    "tdesign-mobile-vue": "1.17.1",
+    "tdesign-vue-next": "1.20.11",
+    "vue": "3.5.45"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.18",
+    "@types/node": "22.15.30",
+    "@vitejs/plugin-vue": "5.2.4",
+    "@vue/compiler-sfc": "3.5.45",
+    "esbuild": "0.21.5",
+    "happy-dom": "^20.8.4",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.8.3",
+    "vite": "5.4.21",
+    "vue-tsc": "2.2.12"
+  }
+}

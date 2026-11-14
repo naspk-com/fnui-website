@@ -1,0 +1,226 @@
+/* popover 组件样式（39 条规则，原文件第 137-2183 条） */
+
+.semi-popover-wrapper {
+  position: relative;
+  background-color: var(--semi-color-bg-3);
+  box-shadow:
+    0 10px 20px #00000014,
+    0 10px 40px #0000001f;
+  z-index: 1030;
+  border-radius: var(--semi-border-radius-medium);
+  font-size: 14px;
+  font-family: var(--font-family-regular);
+  line-height: 20px;
+  opacity: 0;
+}
+
+.semi-popover-wrapper-show {
+  opacity: 1;
+}
+
+.semi-popover-trigger {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+
+.semi-popover-title {
+  padding: 8px;
+  border-bottom: 1px solid var(--semi-color-border);
+}
+
+.semi-popover-confirm {
+  position: absolute;
+}
+
+.semi-popover-with-arrow {
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.semi-popover-animation-show {
+  animation: semi-popover-zoomIn 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+.semi-popover-animation-hide {
+  animation: semi-popover-zoomOut 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+.semi-popover-wrapper .semi-popover-icon-arrow {
+  height: 8px;
+  width: 24px;
+  position: absolute;
+  color: unset;
+}
+
+.semi-popover-wrapper[x-placement="top"] .semi-popover-icon-arrow {
+  left: 50%;
+  transform: translate(-50%);
+  bottom: -7px;
+}
+
+.semi-popover-wrapper[x-placement="top"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="top"] .semi-popover-with-arrow {
+  min-width: 36px;
+}
+
+.semi-popover-wrapper[x-placement="topLeft"] .semi-popover-icon-arrow {
+  bottom: -7px;
+  left: 6px;
+}
+
+.semi-popover-wrapper[x-placement="topLeft"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="topLeft"] .semi-popover-with-arrow {
+  min-width: 36px;
+}
+
+.semi-popover-wrapper[x-placement="topRight"] .semi-popover-icon-arrow {
+  bottom: -7px;
+  right: 6px;
+}
+
+.semi-popover-wrapper[x-placement="topRight"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="topRight"] .semi-popover-with-arrow {
+  min-width: 36px;
+}
+
+.semi-popover-wrapper[x-placement="leftTop"] .semi-popover-icon-arrow {
+  width: 8px;
+  height: 24px;
+  right: -7px;
+  top: 6px;
+}
+
+.semi-popover-wrapper[x-placement="leftTop"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="leftTop"] .semi-popover-with-arrow {
+  min-height: 36px;
+}
+
+.semi-popover-wrapper[x-placement="left"] .semi-popover-icon-arrow {
+  width: 8px;
+  height: 24px;
+  right: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.semi-popover-wrapper[x-placement="left"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="left"] .semi-popover-with-arrow {
+  min-height: 36px;
+}
+
+.semi-popover-wrapper[x-placement="leftBottom"] .semi-popover-icon-arrow {
+  width: 8px;
+  height: 24px;
+  right: -7px;
+  bottom: 6px;
+}
+
+.semi-popover-wrapper[x-placement="leftBottom"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="leftBottom"] .semi-popover-with-arrow {
+  min-height: 36px;
+}
+
+.semi-popover-wrapper[x-placement="rightTop"] .semi-popover-icon-arrow {
+  width: 8px;
+  height: 24px;
+  left: -7px;
+  top: 6px;
+  transform: rotate(180deg);
+}
+
+.semi-popover-wrapper[x-placement="rightTop"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="rightTop"] .semi-popover-with-arrow {
+  min-height: 36px;
+}
+
+.semi-popover-wrapper[x-placement="right"] .semi-popover-icon-arrow {
+  width: 8px;
+  height: 24px;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.semi-popover-wrapper[x-placement="right"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="right"] .semi-popover-with-arrow {
+  min-height: 36px;
+}
+
+.semi-popover-wrapper[x-placement="rightBottom"] .semi-popover-icon-arrow {
+  width: 8px;
+  height: 24px;
+  left: -7px;
+  bottom: 6px;
+  transform: rotate(180deg);
+}
+
+.semi-popover-wrapper[x-placement="rightBottom"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="rightBottom"] .semi-popover-with-arrow {
+  min-height: 36px;
+}
+
+.semi-popover-wrapper[x-placement="bottomLeft"] .semi-popover-icon-arrow {
+  top: -7px;
+  left: 6px;
+  transform: rotate(180deg);
+}
+
+.semi-popover-wrapper[x-placement="bottomLeft"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="bottomLeft"] .semi-popover-with-arrow {
+  min-width: 36px;
+}
+
+.semi-popover-wrapper[x-placement="bottom"] .semi-popover-icon-arrow {
+  top: -7px;
+  left: 50%;
+  transform: translate(-50%) rotate(180deg);
+}
+
+.semi-popover-wrapper[x-placement="bottom"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="bottom"] .semi-popover-with-arrow {
+  min-width: 36px;
+}
+
+.semi-popover-wrapper[x-placement="bottomRight"] .semi-popover-icon-arrow {
+  right: 6px;
+  top: -7px;
+  transform: rotate(180deg);
+}
+
+.semi-popover-wrapper[x-placement="bottomRight"].semi-popover-with-arrow,
+.semi-popover-wrapper[x-placement="bottomRight"] .semi-popover-with-arrow {
+  min-width: 36px;
+}
+
+.semi-popover.semi-popover-rtl {
+  direction: rtl;
+}
+
+.semi-popover-wrapper[x-placement^="top"] .semi-datepicker .semi-datepicker-weeks,
+.semi-popover-wrapper[x-placement="leftTop"] .semi-datepicker .semi-datepicker-weeks,
+.semi-popover-wrapper[x-placement="rightTop"] .semi-datepicker .semi-datepicker-weeks,
+.semi-popover-wrapper[x-placement*="BottomOver"] .semi-datepicker .semi-datepicker-weeks {
+  min-height: 216px;
+}
+
+.semi-popover-wrapper[x-placement^="top"] .semi-datepicker-compact .semi-datepicker-weeks,
+.semi-popover-wrapper[x-placement="leftTop"] .semi-datepicker-compact .semi-datepicker-weeks,
+.semi-popover-wrapper[x-placement="rightTop"] .semi-datepicker-compact .semi-datepicker-weeks,
+.semi-popover-wrapper[x-placement*="BottomOver"] .semi-datepicker-compact .semi-datepicker-weeks {
+  min-height: 168px;
+}
+
+.semi-popover-with-arrow .semi-popconfirm-inner {
+  padding: 12px 12px 12px 8px;
+}
+
+.semi-popover-with-arrow.semi-popconfirm-rtl {
+  direction: rtl;
+}
+
+.semi-popover-with-arrow.semi-popconfirm-rtl .semi-popconfirm-inner {
+  padding: 12px 8px 12px 12px;
+}

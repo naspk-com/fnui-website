@@ -1,0 +1,70 @@
+/* row 组件样式（14 条规则，原文件第 1569-1882 条） */
+
+.semi-row {
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  height: auto;
+  margin-right: 0;
+  margin-left: 0;
+  zoom: 1;
+}
+
+.semi-row:before,
+.semi-row:after {
+  display: table;
+  content: "";
+}
+
+.semi-row:after {
+  clear: both;
+}
+
+.semi-row-flex {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.semi-row-flex:before,
+.semi-row-flex:after {
+  display: flex;
+}
+
+.semi-row-flex-start {
+  justify-content: flex-start;
+}
+
+.semi-row-flex-center {
+  justify-content: center;
+}
+
+.semi-row-flex-end {
+  justify-content: flex-end;
+}
+
+.semi-row-flex-space-between {
+  justify-content: space-between;
+}
+
+.semi-row-flex-space-around {
+  justify-content: space-around;
+}
+
+.semi-row-flex-top {
+  align-items: flex-start;
+}
+
+.semi-row-flex-middle {
+  align-items: center;
+}
+
+.semi-row-flex-bottom {
+  align-items: flex-end;
+}
+
+.semi-rtl .semi-row,
+.semi-rtl .semi-row-flex,
+.semi-portal-rtl .semi-row,
+.semi-portal-rtl .semi-row-flex {
+  direction: rtl;
+}
