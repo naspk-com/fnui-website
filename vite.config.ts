@@ -17,7 +17,8 @@ export default defineConfig({
   build: {
     outDir: fileURLToPath(new URL('./dist', import.meta.url)),
     emptyOutDir: true,
-    cssCodeSplit: false,
+    // Each preview iframe needs its own platform's TDesign and theme styles.
+    cssCodeSplit: true,
     rollupOptions: {
       input: {
         index: fileURLToPath(new URL('./index.html', import.meta.url)),

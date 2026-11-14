@@ -208,3 +208,31 @@ test('application templates have a separate desktop preview page', async () => {
   assert.match(templates, /还原文件管理/)
   assert.match(templates, /返回文档/)
 })
+
+test('production previews keep platform styles in separate entries', async () => {
+  const [config, main, desktop, mobile, preview] = await Promise.all([
+    readFile(new URL('../vite.config.ts', import.meta.url), 'utf8'),
+    readFile(new URL('../src/main.ts', import.meta.url), 'utf8'),
+    readFile(new URL('../src/preview-desktop.ts', import.meta.url), 'utf8'),
+    readFile(new URL('../src/preview-mobile.ts', import.meta.url), 'utf8'),
+    readFile(new URL('../src/preview.ts', import.meta.url), 'utf8'),
+  ])
+  assert.match(config, /cssCodeSplit:\s*true/)
+  assert.match(main, /@naspk\/fnui-theme\/desktop\.css/)
+  assert.doesNotMatch(main, /@naspk\/fnui-theme\/mobile\.css|tdesign-mobile-vue\/dist\/tdesign\.css/)
+  assert.match(desktop, /@naspk\/fnui-theme\/desktop\.css/)
+  assert.doesNotMatch(desktop, /@naspk\/fnui-theme\/mobile\.css|tdesign-mobile-vue\/dist\/tdesign\.css/)
+  assert.match(mobile, /@naspk\/fnui-theme\/mobile\.css/)
+  assert.doesNotMatch(mobile, /@naspk\/fnui-theme\/desktop\.css|tdesign-vue-next\/dist\/tdesign\.css/)
+  assert.match(preview, /name === 'file-manager'[\s\S]*?import\('\.\.\/playground\/src\/preview\.css'\)/)
+})
+
+test('template source and button styles do not leak into the documentation page', async () => {
+  const [templates, styles] = await Promise.all([
+    readFile(new URL('../src/pages/TemplatesPage.vue', import.meta.url), 'utf8'),
+    readFile(new URL('../playground/src/preview.css', import.meta.url), 'utf8'),
+  ])
+  assert.match(templates, /from ['"].*FileManager\.vue\?raw['"]/)
+  assert.doesNotMatch(styles, /(?:^|\})\s*button\s*\{/)
+  assert.match(styles, /:where\(\.files-template\) button\s*\{\s*font-family:\s*inherit/)
+})

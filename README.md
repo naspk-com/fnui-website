@@ -17,6 +17,8 @@ npm run build
 
 静态产物输出到 `dist/`。设置 `FNUI_BASE=/fnui/` 可构建子路径版本。
 
+生产构建需保留 CSS 分包：文档站、桌面预览和移动预览分别加载各自的样式，避免两端 TDesign 样式相互覆盖。
+
 ## 内容组织
 
 - `src/data/catalog.ts`：组件目录。

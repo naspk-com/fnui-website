@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { FnIcon } from '@naspk/fnui/desktop'
-import fileManagerSource from '../../playground/src/examples/templates/file-manager/FileManager.vue'
+import fileManagerSource from '../../playground/src/examples/templates/file-manager/FileManager.vue?raw'
 import previewStyles from '../../playground/src/preview.css?raw'
 import filesIcon from '../../fnos-static/live/2026-11-13/icons/files.png'
 import settingsIcon from '../../fnos-static/live/2026-11-13/icons/settings.png'

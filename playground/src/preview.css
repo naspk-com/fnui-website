@@ -1,6 +1,6 @@
 html, body, #app { width: 100%; height: 100%; margin: 0; }
 * { box-sizing: border-box; }
-button { font: inherit; }
+:where(.files-template) button { font-family: inherit; }
 
 .files-template { --fn-page-max-width: none; --files-scrollbar: rgba(11, 11, 12, .2); --files-fill-0: rgba(11, 11, 12, .04); --files-fill-1: rgba(11, 11, 12, .06); --files-fill-2: rgba(11, 11, 12, .12); --files-fill-3: rgba(11, 11, 12, .2); --files-row-hover: rgba(90, 91, 92, .08); --files-row-selected: rgba(0, 102, 255, .12); }
 [data-fn-theme='dark'] .files-template { --files-scrollbar: rgba(255, 255, 255, .14); --files-fill-0: rgba(255, 255, 255, .04); --files-fill-1: rgba(255, 255, 255, .06); --files-fill-2: rgba(255, 255, 255, .12); --files-fill-3: rgba(255, 255, 255, .2); --files-row-hover: rgba(127, 128, 129, .08); }
