@@ -19,6 +19,8 @@ npm run build
 
 生产构建需保留 CSS 分包：文档站、桌面预览和移动预览分别加载各自的样式，避免两端 TDesign 样式相互覆盖。
 
+构建时会按组件目录生成静态页面，例如 `dist/components/button/index.html`，供 EdgeOne Pages 等静态托管服务直接访问。指南、组件总览和模板页也会生成对应入口；桌面和移动预览仍使用各自的 HTML 文件。部署时构建命令为 `npm run build`，输出目录为 `dist`。请在部署后检查页面的无尾斜杠地址、刷新及前进后退行为；无需配置 SPA 重写或边缘函数。
+
 ## 内容组织
 
 - `src/data/catalog.ts`：组件目录。

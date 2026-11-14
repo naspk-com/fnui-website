@@ -2,12 +2,14 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/postcss'
+import { catalog } from './src/data/catalog'
+import { staticPages } from './static-pages.mjs'
 
 const root = fileURLToPath(new URL('./', import.meta.url))
 
 export default defineConfig({
   base: `${(process.env.FNUI_BASE || '/').replace(/\/?$/, '/')}`,
-  plugins: [vue()],
+  plugins: [vue(), staticPages(catalog)],
   resolve: {
     dedupe: ['vue'],
   },

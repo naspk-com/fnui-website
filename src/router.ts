@@ -1,12 +1,10 @@
 import { ref } from 'vue'
+import { normalizeRoutePath } from './route-path'
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 function currentPath() {
-  const pathname = base && location.pathname.startsWith(base)
-    ? location.pathname.slice(base.length)
-    : location.pathname
-  return pathname.replace(/\/+$/, '') || '/'
+  return normalizeRoutePath(location.pathname, base)
 }
 
 export const routePath = ref(currentPath())
